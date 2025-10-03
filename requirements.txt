@@ -5,7 +5,8 @@ xgboost
 python-dotenv
 matplotlib
 seaborn
-flask
+fastapi
+uvicorn
 streamlit
 
 -e .

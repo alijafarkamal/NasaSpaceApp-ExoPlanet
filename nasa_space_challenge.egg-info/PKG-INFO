@@ -10,7 +10,8 @@ Requires-Dist: xgboost
 Requires-Dist: python-dotenv
 Requires-Dist: matplotlib
 Requires-Dist: seaborn
-Requires-Dist: flask
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
 Requires-Dist: streamlit
 Dynamic: author
 Dynamic: author-email
