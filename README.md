@@ -99,7 +99,7 @@ All Flags: 0,0,0,1
 
 **Countries**: Pakistan 🇵🇰, Azerbaijan 🇦🇿 & Kazakhstan 🇰🇿  
 **Mission**: Advancing exoplanet detection through AI  
-**Challenge**: NASA Space App Challenge  
+**Challenge**: NASA Space App Challenge 2025  
 
 ## 🤖 Development Tools
 
@@ -121,7 +121,7 @@ This system helps astronomers:
 
 ## 📝 License
 
-Developed for NASA Space App Challenge 2024
+Developed for NASA Space App Challenge 2025
 
 ---
 
