@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, field_validator
 import numpy as np
 import pandas as pd
-from src.pipeline.simple_predict import SimplePredictPipeline
+from src.pipeline.real_predict import RealPredictPipeline
 from typing import Optional
 
 # Create FastAPI app
@@ -122,8 +122,8 @@ async def predict_datapoint_post(
         print(pred_df)
         print("Before Prediction")
 
-        # Make prediction
-        predict_pipeline = SimplePredictPipeline()
+        # Make prediction using the actual trained model
+        predict_pipeline = RealPredictPipeline()
         print("Mid Prediction")
         results = predict_pipeline.predict(pred_df)
         print("After Prediction")
@@ -150,7 +150,7 @@ async def api_predict(data: ExoplanetData):
         custom_data = CustomData(data)
         pred_df = custom_data.get_data_as_data_frame()
         
-        predict_pipeline = SimplePredictPipeline()
+        predict_pipeline = RealPredictPipeline()
         results = predict_pipeline.predict(pred_df)
         
         prediction_label = {0: "FALSE POSITIVE", 1: "CANDIDATE", 2: "CONFIRMED"}.get(results[0], "UNKNOWN")
