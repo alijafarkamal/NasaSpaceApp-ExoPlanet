@@ -1,14 +1,24 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel, validator
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, field_validator
 import numpy as np
 import pandas as pd
-from src.pipeline.predict_pipeline import PredictPipeline
+from src.pipeline.simple_predict import SimplePredictPipeline
 from typing import Optional
 
 # Create FastAPI app
 app = FastAPI(title="NASA Exoplanet Prediction API", version="1.0.0")
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Setup templates
 templates = Jinja2Templates(directory="templates")
@@ -31,18 +41,20 @@ class ExoplanetData(BaseModel):
     koi_fpflag_co: int
     koi_fpflag_ec: int
 
-    @validator('*')
-    def check_positive(cls, v, field):
-        if field.name in ['koi_period', 'koi_duration', 'koi_depth', 'koi_prad', 
-                         'koi_teq', 'koi_insol', 'koi_model_snr', 'koi_steff',
-                         'koi_slogg', 'koi_srad', 'koi_kepmag'] and v < 0:
-            raise ValueError(f'{field.name} must be positive')
+    @field_validator('koi_period', 'koi_duration', 'koi_depth', 'koi_prad', 
+                    'koi_teq', 'koi_insol', 'koi_model_snr', 'koi_steff',
+                    'koi_slogg', 'koi_srad', 'koi_kepmag')
+    @classmethod
+    def check_positive(cls, v):
+        if v < 0:
+            raise ValueError('Value must be positive')
         return v
 
-    @validator('koi_fpflag_nt', 'koi_fpflag_ss', 'koi_fpflag_co', 'koi_fpflag_ec')
-    def check_binary_flags(cls, v, field):
+    @field_validator('koi_fpflag_nt', 'koi_fpflag_ss', 'koi_fpflag_co', 'koi_fpflag_ec')
+    @classmethod
+    def check_binary_flags(cls, v):
         if v not in [0, 1]:
-            raise ValueError(f'{field.name} must be 0 or 1')
+            raise ValueError('Value must be 0 or 1')
         return v
 
 # Custom data class to convert Pydantic model to DataFrame
@@ -111,7 +123,7 @@ async def predict_datapoint_post(
         print("Before Prediction")
 
         # Make prediction
-        predict_pipeline = PredictPipeline()
+        predict_pipeline = SimplePredictPipeline()
         print("Mid Prediction")
         results = predict_pipeline.predict(pred_df)
         print("After Prediction")
@@ -138,7 +150,7 @@ async def api_predict(data: ExoplanetData):
         custom_data = CustomData(data)
         pred_df = custom_data.get_data_as_data_frame()
         
-        predict_pipeline = PredictPipeline()
+        predict_pipeline = SimplePredictPipeline()
         results = predict_pipeline.predict(pred_df)
         
         prediction_label = {0: "FALSE POSITIVE", 1: "CANDIDATE", 2: "CONFIRMED"}.get(results[0], "UNKNOWN")
