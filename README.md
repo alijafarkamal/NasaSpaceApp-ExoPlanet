@@ -1,10 +1,10 @@
-# ???? NASA Exoplanet Prediction System
+# NASA Exoplanet Prediction System
 
-**Team AstroVenture** ????????????????????????
+**Team AstroVenture** - Pakistan, Azerbaijan & Kazakhstan
 
 Advanced AI-powered system for detecting and classifying exoplanets using NASA's Kepler data with beautiful React frontend and FastAPI backend.
 
-## ???? Features
+## Features
 
 - **Real-time Exoplanet Classification**: CONFIRMED, CANDIDATE, or FALSE POSITIVE
 - **Modern Web Interface**: Beautiful, responsive React frontend with NASA-themed UI
@@ -14,14 +14,14 @@ Advanced AI-powered system for detecting and classifying exoplanets using NASA's
 - **Interactive Visualizations**: Pie charts and progress bars for prediction results
 - **Machine Learning Pipeline**: Intelligent prediction system with confidence scores
 
-## ??????? Technology Stack
+## Technology Stack
 
 - **Frontend**: React 18, TypeScript, Material-UI, Recharts, Axios
 - **Backend**: FastAPI, Pydantic, Uvicorn, ReportLab
 - **ML**: Scikit-learn, XGBoost, Custom prediction algorithms
 - **Styling**: NASA-themed dark UI with space gradients and animations
 
-## ???? Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -71,7 +71,7 @@ npm start
 - Backend API: http://localhost:8000
 - API Documentation: http://localhost:8000/docs
 
-## ???? How to Use
+## How to Use
 
 ### Single Prediction
 1. Open http://localhost:3000 in your browser
@@ -85,14 +85,14 @@ npm start
 3. Click "Process CSV" to run batch predictions
 4. Download the PDF report with detailed results
 
-## ???? Required CSV Format
+## Required CSV Format
 
 Your CSV file must contain these exact columns:
 ```
 koi_period, koi_duration, koi_depth, koi_prad, koi_teq, koi_insol, koi_model_snr, koi_steff, koi_slogg, koi_srad, koi_kepmag, koi_fpflag_nt, koi_fpflag_ss, koi_fpflag_co, koi_fpflag_ec
 ```
 
-## ???? Test Data
+## Test Data
 
 Use the provided `sample_exoplanet_data.csv` file for testing, or try these sample inputs:
 
@@ -112,7 +112,7 @@ Kepler Magnitude: 12.5
 All Flags: 0,0,0,0
 ```
 
-## ???? API Endpoints
+## API Endpoints
 
 - `POST /api/predict` - Make single exoplanet predictions
 - `POST /api/upload-csv` - Batch CSV processing
@@ -121,13 +121,13 @@ All Flags: 0,0,0,0
 - `GET /` - Main application page
 - `GET /docs` - Interactive API documentation
 
-## ???? Prediction Classes
+## Prediction Classes
 
-- **??? CONFIRMED**: Verified exoplanets (High confidence)
-- **?????? CANDIDATE**: Potential exoplanets requiring further study
-- **??? FALSE POSITIVE**: Non-planetary objects or stellar variability
+- **CONFIRMED**: Verified exoplanets (High confidence)
+- **CANDIDATE**: Potential exoplanets requiring further study
+- **FALSE POSITIVE**: Non-planetary objects or stellar variability
 
-## ???? Scientific Impact
+## Scientific Impact
 
 This system helps astronomers:
 - Prioritize follow-up observations
@@ -135,20 +135,20 @@ This system helps astronomers:
 - Accelerate exoplanet discovery process
 - Democratize space science through accessible AI tools
 
-## ???? Team AstroVenture
+## Team AstroVenture
 
-**Countries**: Pakistan ????????, Azerbaijan ???????? & Kazakhstan ????????  
+**Countries**: Pakistan, Azerbaijan & Kazakhstan  
 **Mission**: Advancing exoplanet detection through AI  
 **Challenge**: NASA Space App Challenge 2025
 
-## ???? Development Tools
+## Development Tools
 
 This project was developed and enhanced using **Cursor AI**, an advanced AI-powered code editor that significantly accelerated the development process through intelligent code generation, debugging, and optimization.
 
-## ???? License
+## License
 
 Developed for NASA Space App Challenge 2025
 
 ---
 
-**???? Exploring the cosmos, one prediction at a time!** ???
+**Exploring the cosmos, one prediction at a time!**
