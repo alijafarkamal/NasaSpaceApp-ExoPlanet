@@ -1,0 +1,13 @@
+numpy 
+pandas
+scikit-learn
+xgboost
+python-dotenv
+matplotlib
+seaborn
+fastapi
+uvicorn
+streamlit
+reportlab
+
+-e .
